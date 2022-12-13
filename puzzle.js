@@ -63,6 +63,7 @@ window.onload = function () {
     // When the shuffle button is clicked, simulate 300 random moves of the blank space
     shuffle.onclick = function ()
     {
+        // Start the timer
         start = new Date().getTime();
         timer = setInterval(function () {
             var now = new Date().getTime();
@@ -70,6 +71,8 @@ window.onload = function () {
             var seconds = Math.floor((distance / 1000));
             document.getElementById("time").innerHTML = seconds + "s";
         }, 1000);
+        moves = 0;
+        document.getElementById("moves").innerHTML=moves;
         for (var i = 0; i < 300; i++) {
             var rand = parseInt(Math.random() * 100) % 4;
             if (rand == 0) {
@@ -199,8 +202,10 @@ function swap(position)
 function win()
 {
     // Simulate a mouse click:
-    
-    window.location.href = "./win.html";
+    //stops the timer
+    timer = clearInterval(timer);
+
+    // window.location.href = "./win.html";
     alert('Winner! You took ' );
 }
 
