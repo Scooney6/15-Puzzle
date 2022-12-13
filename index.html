@@ -6,6 +6,11 @@
     <script src="puzzle.js" type="text/javascript"></script>
 </head>
 <body>
+    <audio controls autoplay>
+        <source src="horse.ogg" type="audio/ogg">
+        <source src="horse.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
     <div id="select_background">
         <p>Select background:</p>
         <select onchange="changeImage();" id="background">
@@ -16,7 +21,7 @@
         </select>
     </div>
     <div id="time_counter">
-        <p>Time: <span id="time">0</span></p>
+        <label id="minutes">00</label>:<label id="seconds">00</label>
     </div>
     <div id="move_counter">
         <p>Number of moves: <span id="moves">0</span></p>
