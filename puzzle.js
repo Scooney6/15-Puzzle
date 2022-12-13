@@ -3,7 +3,7 @@
 var piece;
 var spaceY;
 var spaceX;
-var moves;
+var moves = 0;
 var timer;
 var start;
 
@@ -13,6 +13,7 @@ var start;
 window.onload = function () {
     var puzzle = document.getElementById('puzzle');
     piece = puzzle.getElementsByTagName('div');
+    document.getElementById("moves").innerHTML=moves;
     for (var i = 0; i < piece.length; i++)
     {
         piece[i].className = 'piece';
@@ -46,6 +47,8 @@ window.onload = function () {
             if (isMovable(parseInt(this.innerHTML)))
             {
                 swap(this.innerHTML - 1);
+                moves++;
+                document.getElementById("moves").innerHTML=moves;
                 if (finish())
                 {
                     win();
