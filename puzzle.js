@@ -5,6 +5,7 @@ var spaceY;
 var spaceX;
 var moves;
 var timer;
+var start;
 
 
 
@@ -59,6 +60,7 @@ window.onload = function () {
     // When the shuffle button is clicked, simulate 300 random moves of the blank space
     shuffle.onclick = function ()
     {
+        start = new Date().getTime();
         for (var i = 0; i < 300; i++) {
             var rand = parseInt(Math.random() * 100) % 4;
             if (rand == 0) {
@@ -187,7 +189,10 @@ function swap(position)
 // Function to alert the user when they win
 function win()
 {
-    alert('Winner! You took ' + document.getElementById('move').innerHTML + ' moves and ' + document.getElementById('time').innerHTML + ' seconds.');
+    // Simulate a mouse click:
+    
+    window.location.href = "./win.html";
+    alert('Winner! You took ' );
 }
 
 
@@ -210,22 +215,6 @@ function finish()
     return flag;
 }
 
-// Function to increase move counter
-function moveCounter()
-{
-    document.getElementById('move').innerHTML = parseInt(document.getElementById('move').innerHTML) + 1;
-}
-
-var minutesLabel = document.getElementById("minutes");
-var secondsLabel = document.getElementById("seconds");
-var totalSeconds = 0;
-setInterval(setTime, 1000);
-
-function setTime() {
-  ++totalSeconds;
-  secondsLabel.innerHTML = pad(totalSeconds % 60);
-  minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
-}
 
 function pad(val) {
   var valString = val + "";
@@ -237,9 +226,19 @@ function pad(val) {
 }
 
 // Function to change the background image
-function changeImage()
+function changeBackground(num)
 {
-    var image = document.getElementById('background');
-    window.style.backgroundImage = 'url(' + image.value + ')';    
+    var images = ['./backgrounds/fine.jpeg','./backgrounds/heman.jpeg','./backgrounds/pepe_sad.jpeg','./backgrounds/swamp.jpeg'];
+    document.body.style.backgroundColor = "#f3f3f3";
+    document.body.style.backgroundImage = "url(" + images[num] + ")";
 }
 
+// Function to show elapsed time in seconds
+function showElapsedTime()
+{
+    var now = new Date();
+    var elapsed = now - start;
+    var seconds = elapsed / 1000;
+    document.getElementById('time').innerHTML = seconds;
+    setTimeout(showElapsedTime, 1000);
+}

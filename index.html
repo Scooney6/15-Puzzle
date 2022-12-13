@@ -6,22 +6,21 @@
     <script src="puzzle.js" type="text/javascript"></script>
 </head>
 <body>
-    <audio controls autoplay>
-        <source src="horse.ogg" type="audio/ogg">
-        <source src="horse.mp3" type="audio/mpeg">
+
+    <audio hidden controls autoplay loop>
+        <source  src="music.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
+
     <div id="select_background">
         <p>Select background:</p>
-        <select onchange="changeImage();" id="background">
-            <option value="./backgrounds/fine.jpg">Background 1</option>
-            <option value="./backgrounds/heman.jpg">Background 2</option>
-            <option value="./backgrounds/pepe_sad.jpg">Background 3</option>
-            <option value="./backgrounds/swamp.jpg">Background 4</option>
-        </select>
+        <button onclick="changeBackground(0)">Background 1</button>
+        <button onclick="changeBackground(1)">Background 2</button>
+        <button onclick="changeBackground(2)">Background 3</button>
+        <button onclick="changeBackground(3)">Background 4</button>
     </div>
     <div id="time_counter">
-        <label id="minutes">00</label>:<label id="seconds">00</label>
+        <p>Time elapsed: <span id="time">0</span></p>
     </div>
     <div id="move_counter">
         <p>Number of moves: <span id="moves">0</span></p>
@@ -48,4 +47,8 @@
     <div id="shuffle">
         <button id="shufflebutton">Shuffle</button>
     </div>
+    <div>
+        <button onclick="solve()" id="solvebutton">Solve</button>
+    </div>
 </div>
+</body>
