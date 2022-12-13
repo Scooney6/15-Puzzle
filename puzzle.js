@@ -64,6 +64,12 @@ window.onload = function () {
     shuffle.onclick = function ()
     {
         start = new Date().getTime();
+        timer = setInterval(function () {
+            var now = new Date().getTime();
+            var distance = now - start;
+            var seconds = Math.floor((distance / 1000));
+            document.getElementById("time").innerHTML = seconds + "s";
+        }, 1000);
         for (var i = 0; i < 300; i++) {
             var rand = parseInt(Math.random() * 100) % 4;
             if (rand == 0) {
