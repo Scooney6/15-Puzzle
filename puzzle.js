@@ -3,6 +3,8 @@
 var piece;
 var spaceY;
 var spaceX;
+var moves;
+var time;
 
 // When the page is loaded, set up the puzzle pieces and shuffle button
 window.onload = function () {
@@ -183,7 +185,7 @@ function swap(position)
 // Function to alert the user when they win
 function win()
 {
-    alert('Winner!');
+    alert('Winner! You took ' + document.getElementById('move').innerHTML + ' moves and ' + document.getElementById('time').innerHTML + ' seconds.');
 }
 
 
@@ -204,4 +206,16 @@ function finish()
         }
     }
     return flag;
+}
+
+// Function to increase move counter
+function moveCounter()
+{
+    document.getElementById('move').innerHTML = parseInt(document.getElementById('move').innerHTML) + 1;
+}
+
+// Function to increase time counter
+function timeCounter()
+{
+    document.getElementById('time').innerHTML = parseInt(document.getElementById('time').innerHTML) + 1;
 }
