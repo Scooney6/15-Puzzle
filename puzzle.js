@@ -4,7 +4,9 @@ var piece;
 var spaceY;
 var spaceX;
 var moves;
-var time;
+var timer;
+
+
 
 // When the page is loaded, set up the puzzle pieces and shuffle button
 window.onload = function () {
@@ -214,8 +216,30 @@ function moveCounter()
     document.getElementById('move').innerHTML = parseInt(document.getElementById('move').innerHTML) + 1;
 }
 
-// Function to increase time counter
-function timeCounter()
-{
-    document.getElementById('time').innerHTML = parseInt(document.getElementById('time').innerHTML) + 1;
+var minutesLabel = document.getElementById("minutes");
+var secondsLabel = document.getElementById("seconds");
+var totalSeconds = 0;
+setInterval(setTime, 1000);
+
+function setTime() {
+  ++totalSeconds;
+  secondsLabel.innerHTML = pad(totalSeconds % 60);
+  minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
 }
+
+function pad(val) {
+  var valString = val + "";
+  if (valString.length < 2) {
+    return "0" + valString;
+  } else {
+    return valString;
+  }
+}
+
+// Function to change the background image
+function changeImage()
+{
+    var image = document.getElementById('background');
+    window.style.backgroundImage = 'url(' + image.value + ')';    
+}
+
