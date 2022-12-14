@@ -8,6 +8,7 @@ var timer =0;
 var start;
 
 
+
 // When the page is loaded, set up the puzzle pieces and shuffle button
 window.onload = function () {
     var modal = document.getElementById("myModal");
@@ -63,6 +64,7 @@ window.onload = function () {
                 if (finish())
                 {
                     timer = clearInterval(timer);
+                    moves = 0;
                     var duration = 1 * 1000;
                     var end = Date.now() + duration;
                     (function frame() {
@@ -82,6 +84,8 @@ window.onload = function () {
                     modal.style.display = "block";
                     document.getElementById("winTime").innerHTML = "Time: " + document.getElementById("time").innerHTML;
                     document.getElementById("winMoves").innerHTML = "Moves: " + document.getElementById("moves").innerHTML;
+                    document.getElementById("moves").innerHTML = moves;
+                    document.getElementById("time").innerHTML = 0 + "s";
                 }
             }
         };
@@ -246,6 +250,8 @@ function finish()
     }
     return flag;
 }
+
+
 
 
 function pad(val) {
