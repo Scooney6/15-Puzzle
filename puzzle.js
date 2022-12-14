@@ -4,7 +4,7 @@ var piece;
 var spaceY;
 var spaceX;
 var moves = 0;
-var timer;
+var timer =0;
 var start;
 
 
@@ -14,6 +14,7 @@ window.onload = function () {
     var puzzle = document.getElementById('puzzle');
     piece = puzzle.getElementsByTagName('div');
     document.getElementById("moves").innerHTML=moves;
+    document.getElementById("time").innerHTML = "0s";
     for (var i = 0; i < piece.length; i++)
     {
         piece[i].className = 'piece';
@@ -203,7 +204,7 @@ function win()
 {
     // Simulate a mouse click:
     //stops the timer
-    timer = clearInterval(timer);
+    document.getElementById("time").innerHTML = seconds + "s";
 
     // window.location.href = "./win.html";
     alert('Winner! You took ' );
@@ -247,12 +248,3 @@ function changeBackground(num)
     document.body.style.backgroundImage = "url(" + images[num] + ")";
 }
 
-// Function to show elapsed time in seconds
-function showElapsedTime()
-{
-    var now = new Date();
-    var elapsed = now - start;
-    var seconds = elapsed / 1000;
-    document.getElementById('time').innerHTML = seconds;
-    setTimeout(showElapsedTime, 1000);
-}
