@@ -8,7 +8,6 @@ var timer =0;
 var start;
 
 
-
 // When the page is loaded, set up the puzzle pieces and shuffle button
 window.onload = function () {
     var modal = document.getElementById("myModal");

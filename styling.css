@@ -44,7 +44,6 @@ h1 {
     background-color: aliceblue;
     margin: auto;
     width: max-content;
-
 }
 
 .modal {
@@ -80,4 +79,21 @@ h1 {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.rainbow_text_animated {
+    background: linear-gradient(to right, Purple, Red, Yellow, Green, Aqua, Purple, Red);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 8s linear infinite;
+    background-size: 400% 100%;
+}
+@keyframes rainbow_animation {
+    0%, 100% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
 }
