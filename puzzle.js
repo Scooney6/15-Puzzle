@@ -8,9 +8,19 @@ var timer =0;
 var start;
 
 
-
 // When the page is loaded, set up the puzzle pieces and shuffle button
 window.onload = function () {
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
     var puzzle = document.getElementById('puzzle');
     piece = puzzle.getElementsByTagName('div');
     document.getElementById("moves").innerHTML=moves;
@@ -52,7 +62,26 @@ window.onload = function () {
                 document.getElementById("moves").innerHTML=moves;
                 if (finish())
                 {
-                    win();
+                    timer = clearInterval(timer);
+                    var duration = 1 * 1000;
+                    var end = Date.now() + duration;
+                    (function frame() {
+                        // launch a few confetti from the left edge
+                        confetti({
+                            particleCount: 7,
+                            angle: 60,
+                            spread: 55,
+                            origin: { x: Math.random(), y: Math.random() }
+                        });
+
+                        // keep going until we are out of time
+                        if (Date.now() < end) {
+                            requestAnimationFrame(frame);
+                        }
+                    }());
+                    modal.style.display = "block";
+                    document.getElementById("winTime").innerHTML = "Time: " + document.getElementById("time").innerHTML;
+                    document.getElementById("winMoves").innerHTML = "Moves: " + document.getElementById("moves").innerHTML;
                 }
             }
         };
@@ -199,20 +228,6 @@ function swap(position)
 }
 
 
-// Function to alert the user when they win
-function win()
-{
-    // Simulate a mouse click:
-    //stops the timer
-    
-    timer = clearInterval(timer);
-    document.getElementById("time").innerHTML = 0 + "s";
-
-    // window.location.href = "./win.html";
-    alert('Winner! You took ' );
-}
-
-
 // Function to check if the game is finished
 function finish()
 {
@@ -250,3 +265,12 @@ function changeBackground(num)
     document.body.style.backgroundImage = "url(" + images[num] + ")";
 }
 
+// Function to show elapsed time in seconds
+function showElapsedTime()
+{
+    var now = new Date();
+    var elapsed = now - start;
+    var seconds = elapsed / 1000;
+    document.getElementById('time').innerHTML = seconds;
+    setTimeout(showElapsedTime, 1000);
+}
