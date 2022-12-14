@@ -204,7 +204,9 @@ function win()
 {
     // Simulate a mouse click:
     //stops the timer
-    document.getElementById("time").innerHTML = seconds + "s";
+    
+    timer = clearInterval(timer);
+    document.getElementById("time").innerHTML = 0 + "s";
 
     // window.location.href = "./win.html";
     alert('Winner! You took ' );
