@@ -270,13 +270,3 @@ function changeBackground(num)
     document.body.style.backgroundColor = "#f3f3f3";
     document.body.style.backgroundImage = "url(" + images[num] + ")";
 }
-
-// Function to show elapsed time in seconds
-function showElapsedTime()
-{
-    var now = new Date();
-    var elapsed = now - start;
-    var seconds = elapsed / 1000;
-    document.getElementById('time').innerHTML = seconds;
-    setTimeout(showElapsedTime, 1000);
-}
